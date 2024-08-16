@@ -1,8 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include "sparse/PixelText.hpp"
 
+#include "dense/PixelText.hpp"
+
 int main() {
 	sparse::PixelFont font("font.png");
+	dense::PixelFont dense_font("font.png");
+
+	sparse::PixelText sparse_example(font, "Sparse text example", {100, 350});
+	dense::PixelText dense_example(dense_font, "Dense text example", {100, 356});
+
+	sparse::PixelText sparse_dis(font, "Jebac disa kurwe orka!!!111", {100, 500});
+	dense::PixelText dense_dis(dense_font, "Jebac disa kurwe orka!!!111", {100, 506});
 
 	sparse::PixelText text(font, "1234567890 jebie mi dupa panie gac! ooomagad", {100, 100});
 	sparse::PixelText text2(font, "megawonsz9 to jest turbogigakoxu. hellyeah", {100, 106});
@@ -64,6 +73,12 @@ int main() {
 		window.draw(line6);
 		window.draw(line7);
 		window.draw(line8);
+
+		window.draw(sparse_example);
+		window.draw(dense_example);
+
+		window.draw(sparse_dis);
+		window.draw(dense_dis);
 
 		window.display();
 	}
