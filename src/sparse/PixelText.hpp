@@ -15,7 +15,7 @@ public:
 private:
 	std::vector<PixelChar> text;
 
-	PixelChar generate_char(PixelFont::PixelCharTemplate char_template, sf::Vector2i pos);
+	PixelChar generate_char(const PixelFont::PixelCharTemplate& char_template, sf::Vector2i pos);
 };
 
 }

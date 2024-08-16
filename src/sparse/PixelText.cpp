@@ -24,7 +24,7 @@ void PixelText::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 }
 
 PixelText::PixelChar PixelText::generate_char(
-		PixelFont::PixelCharTemplate char_template,
+		const PixelFont::PixelCharTemplate& char_template,
 		sf::Vector2i pos)
 {
 	return {
