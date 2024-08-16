@@ -5,7 +5,6 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(SFML 2.6 COMPONENTS graphics REQUIRED)
 
-include_directories(src)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 add_executable(onepixeltext ${SOURCES})
