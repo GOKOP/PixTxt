@@ -1,11 +1,10 @@
 #include <dense/PixelFont.hpp>
-#include <SFML/Graphics.hpp>
+#include <PbmImage.hpp>
 
 namespace pixtxt::dense {
 
-PixelFont::PixelFont(const std::string& filename) {
-	sf::Image font_image;
-	font_image.loadFromFile(filename);
+PixelFont::PixelFont(std::string_view filename) {
+	PbmImage font_image(filename);
 
 	static constexpr int chars_in_row = 16;
 
@@ -16,7 +15,7 @@ PixelFont::PixelFont(const std::string& filename) {
 		for(int j=0; j < char_width; ++j) {
 			for(int k=0; k < char_height; ++k) {
 				characters[i][k * char_width + j] =
-					font_image.getPixel(j + x, k + y) == sf::Color::White;
+					font_image.get_pixel(j + x, k + y) == Color(255, 255, 255);
 			}
 		}
 	}

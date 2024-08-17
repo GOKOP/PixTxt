@@ -1,70 +1,108 @@
 #include <SFML/Graphics.hpp>
-#include "sparse/PixelText.hpp"
 
+#include "sparse/PixelText.hpp"
 #include "dense/PixelText.hpp"
 
 using namespace pixtxt;
 
+class SfmlPixelText : public sf::Drawable {
+	std::vector<sf::Vertex> pixels;
+	sf::RectangleShape background;
+
+	SfmlPixelText(const std::vector<Pixel>& source_pixels) {
+		for(auto pixel : source_pixels) {
+			pixels.push_back(sf::Vertex(
+				sf::Vector2f(pixel.pos.x, pixel.pos.y),
+				sf::Color(pixel.color.r, pixel.color.g, pixel.color.b)));
+		}
+
+		float left = pixels.front().position.x;
+		float top = pixels.front().position.y;
+		float right = pixels.back().position.x;
+		float bottom = pixels.back().position.y;
+
+		background.setPosition({left - 1, top - 1});
+		background.setSize({right - left + 3, bottom - top + 3});
+		background.setFillColor(sf::Color::Black);
+	}
+
+public:
+
+	static SfmlPixelText sparse(const sparse::PixelFont& font, std::string_view text, Position pos) {
+		return SfmlPixelText(sparse::PixelText(font, text, pos).get_pixels());
+	}
+
+	static SfmlPixelText dense(const dense::PixelFont& font, std::string_view text, Position pos) {
+		return SfmlPixelText(dense::PixelText(font, text, pos).get_pixels());
+	}
+
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+		target.draw(background);
+		target.draw(pixels.data(), pixels.size(), sf::Points);
+	}
+
+};
+
 int main() {
-	sparse::PixelFont font("font.png");
-	dense::PixelFont dense_font("font.png");
+	sparse::PixelFont font("font.pbm");
+	dense::PixelFont dense_font("font.pbm");
 
-	sparse::PixelText sparse_example(font, "Sparse text example", {100, 350});
-	dense::PixelText dense_example(dense_font, "Dense text example", {100, 356});
+	auto sparse_example = SfmlPixelText::sparse(font, "Sparse text example", {100, 350});
+	auto dense_example = SfmlPixelText::dense(dense_font, "Dense text example", {100, 356});
 
-	sparse::PixelText sparse_dis(font, "Jebac disa kurwe orka!!!111", {100, 500});
-	dense::PixelText dense_dis(dense_font, "Jebac disa kurwe orka!!!111", {100, 506});
+	auto sparse_dis = SfmlPixelText::sparse(font, "Jebac disa kurwe orka!!!111", {100, 500});
+	auto dense_dis = SfmlPixelText::dense(dense_font, "Jebac disa kurwe orka!!!111", {100, 506});
 
-	sparse::PixelText text(font, "1234567890 jebie mi dupa panie gac! ooomagad", {100, 100});
-	sparse::PixelText text2(font, "megawonsz9 to jest turbogigakoxu. hellyeah", {100, 106});
-	sparse::PixelText text3(font, "Morris? Nienawidze zydow, murzynow, pedalow, LGBT", {100, 200});
+	auto text = SfmlPixelText::sparse(font, "1234567890 jebie mi dupa panie gac! ooomagad", {100, 100});
+	auto text2 = SfmlPixelText::sparse(font, "megawonsz9 to jest turbogigakoxu. hellyeah", {100, 106});
+	auto text3 = SfmlPixelText::sparse(font, "Morris? Nienawidze zydow, murzynow, pedalow, LGBT", {100, 200});
 
-	sparse::PixelText line1(
+	auto line1 = SfmlPixelText::sparse(
 		font,
 		"Nie jest dopuszczalne traktowanie zatechlych uszu jako czegos normalnego.",
 		{300, 100});
-	sparse::PixelText line2(
+	auto line2 = SfmlPixelText::sparse(
 		font,
 		"To jest po prostu niezmiernie glupie, aby tolerowac takie zachowania w cywilizowanym spoleczenstwie.",
 		{300, 106});
-	sparse::PixelText line3(
+	auto line3 = SfmlPixelText::sparse(
 		font,
 		"Wszystkich ludzi ktorzy przejawiaja takie sklonnosci nalezy polewac obwicie sosem majonezowym w proszku,",
 		{300, 112});
-	sparse::PixelText line4(
+	auto line4 = SfmlPixelText::sparse(
 		font,
 		"a kazdego kto bedzie stawial opor przeturlac przez trawnik pana Gaca.",
 		{300, 118});
-	sparse::PixelText line5(
+	auto line5 = SfmlPixelText::sparse(
 		font,
 		"Oczywiscie nie bedzie to latwe zadanie - trzeba najpierw rozpuscic cale swiatowe zapasy gowna psa.",
 		{300, 124});
-	sparse::PixelText line6(
+	auto line6 = SfmlPixelText::sparse(
 		font,
 		"Nie wydaje mi sie, aby ONZ chcialo podjac jakies kroki w tym kierunku, zwlaszcza w trakcie szalejacej pandemii.",
 		{300, 130});
-	sparse::PixelText line7(
+	auto line7 = SfmlPixelText::sparse(
 		font,
 		"Nalezy jednak pamietac, ze ignorowanie problemu nie sprawi, ze ten przestanie istniec",
 		{300, 136});
-	sparse::PixelText line8(
+	auto line8 = SfmlPixelText::sparse(
 		font,
 		"i w koncu trzeba bedzie stawic mu czola.",
 		{300, 142});
 
-	dense::PixelText dense_line1(
+	auto dense_line1 = SfmlPixelText::dense(
 		dense_font,
 		"Nie jest dopuszczalne traktowanie zatechlych uszu jako czegos normalnego.",
 		{300, 300});
-	dense::PixelText dense_line2(
+	auto dense_line2 = SfmlPixelText::dense(
 		dense_font,
 		"To jest po prostu niezmiernie glupie, aby tolerowac takie zachowania w cywilizowanym spoleczenstwie.",
 		{300, 306});
-	dense::PixelText dense_line3(
+	auto dense_line3 = SfmlPixelText::dense(
 		dense_font,
 		"Wszystkich ludzi ktorzy przejawiaja takie sklonnosci nalezy polewac obwicie sosem majonezowym w proszku,",
 		{300, 312});
-	dense::PixelText dense_line4(
+	auto dense_line4 = SfmlPixelText::dense(
 		dense_font,
 		"a kazdego kto bedzie stawial opor przeturlac przez trawnik pana Gaca.",
 		{300, 318});

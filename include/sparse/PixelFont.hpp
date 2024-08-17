@@ -1,6 +1,8 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <array>
+#include <string_view>
+#include <Color.hpp>
 
 namespace pixtxt::sparse {
 
@@ -14,9 +16,9 @@ public:
 	// the way it works is completely different
 	static constexpr int subpixels = 3;
 
-	using PixelCharTemplate = std::array<sf::Color, char_height>;
+	using PixelCharTemplate = std::array<Color, char_height>;
 
-	explicit PixelFont(const std::string& filepath);
+	explicit PixelFont(std::string_view filepath);
 
 	inline const PixelCharTemplate& get_char(unsigned char key) const {
 		return characters[key];

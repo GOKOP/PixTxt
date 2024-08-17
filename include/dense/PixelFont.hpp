@@ -1,7 +1,7 @@
 #pragma once
 
 #include <array>
-#include <string>
+#include <string_view>
 
 namespace pixtxt::dense {
 
@@ -12,7 +12,7 @@ public:
 
 	using Char = std::array<bool, char_width * char_height>;
 
-	explicit PixelFont(const std::string& filename);
+	explicit PixelFont(std::string_view filename);
 	const Char& get_char(unsigned char key) const;
 
 private:

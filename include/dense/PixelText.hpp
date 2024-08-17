@@ -1,20 +1,21 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include <vector>
+#include <Pixel.hpp>
 #include <dense/PixelFont.hpp>
 
 namespace pixtxt::dense {
 
-class PixelText : public sf::Drawable {
-	std::vector<sf::Vertex> text_pixels;
+class PixelText {
+	std::vector<Pixel> text_pixels;
 
-	sf::Uint8& get_subpixel(sf::Color& pixel, int index) const;
-	std::array<sf::Vertex, PixelFont::char_height> gen_pixel_column(sf::Vector2i pos) const;
+	uint8_t& get_subpixel(Color& pixel, int index) const;
+	std::array<Pixel, PixelFont::char_height> gen_pixel_column(Position pos) const;
 
 public:
 
-	PixelText(const PixelFont& font, std::string_view text, sf::Vector2i pos);
-	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+	PixelText(const PixelFont& font, std::string_view text, Position pos);
+	inline const std::vector<Pixel>& get_pixels() const { return text_pixels; };
 };
 
 }
