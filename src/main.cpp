@@ -50,6 +50,22 @@ int main() {
 		"i w koncu trzeba bedzie stawic mu czola.",
 		{300, 142});
 
+	dense::PixelText dense_line1(
+		dense_font,
+		"Nie jest dopuszczalne traktowanie zatechlych uszu jako czegos normalnego.",
+		{300, 300});
+	dense::PixelText dense_line2(
+		dense_font,
+		"To jest po prostu niezmiernie glupie, aby tolerowac takie zachowania w cywilizowanym spoleczenstwie.",
+		{300, 306});
+	dense::PixelText dense_line3(
+		dense_font,
+		"Wszystkich ludzi ktorzy przejawiaja takie sklonnosci nalezy polewac obwicie sosem majonezowym w proszku,",
+		{300, 312});
+	dense::PixelText dense_line4(
+		dense_font,
+		"a kazdego kto bedzie stawial opor przeturlac przez trawnik pana Gaca.",
+		{300, 318});
 
 	sf::RenderWindow window(sf::VideoMode(800, 600), "one pixel text", sf::Style::Close);
 	window.setFramerateLimit(60);
@@ -73,6 +89,11 @@ int main() {
 		window.draw(line6);
 		window.draw(line7);
 		window.draw(line8);
+
+		window.draw(dense_line1);
+		window.draw(dense_line2);
+		window.draw(dense_line3);
+		window.draw(dense_line4);
 
 		window.draw(sparse_example);
 		window.draw(dense_example);
