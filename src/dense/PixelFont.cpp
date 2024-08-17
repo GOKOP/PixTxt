@@ -1,7 +1,7 @@
-#include "PixelFont.hpp"
+#include <dense/PixelFont.hpp>
 #include <SFML/Graphics.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 PixelFont::PixelFont(const std::string& filename) {
 	sf::Image font_image;

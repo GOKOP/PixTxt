@@ -1,9 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "PixelFont.hpp"
+#include <dense/PixelFont.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 class PixelText : public sf::Drawable {
 	std::vector<sf::Vertex> text_pixels;

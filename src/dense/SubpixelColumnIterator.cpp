@@ -1,6 +1,6 @@
-#include "SubpixelColumnIterator.hpp"
+#include <dense/SubpixelColumnIterator.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 SubpixelColumnIterator::value_type SubpixelColumnIterator::operator*() const {
 	if(current_column_in_char == -1) { // gap between characters

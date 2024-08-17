@@ -1,7 +1,7 @@
-#include "PixelText.hpp"
-#include "SubpixelColumns.hpp"
+#include <dense/PixelText.hpp>
+#include <dense/SubpixelColumns.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 PixelText::PixelText(const PixelFont& font, std::string_view text, sf::Vector2i pos) {
 	int current_subpixel = 0;

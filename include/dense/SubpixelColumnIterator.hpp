@@ -2,9 +2,9 @@
 
 #include <string_view>
 #include <array>
-#include "PixelFont.hpp"
+#include <dense/PixelFont.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 class SubpixelColumnIterator {
 	const PixelFont* font;

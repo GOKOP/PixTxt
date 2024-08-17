@@ -1,8 +1,8 @@
 #pragma once
 
-#include "SubpixelColumnIterator.hpp"
+#include <dense/SubpixelColumnIterator.hpp>
 
-namespace dense {
+namespace pixtxt::dense {
 
 // class to iterate over subpixels columns in the text according to the font
 // not much here, all the magic happens in SubpixelColumnIterator

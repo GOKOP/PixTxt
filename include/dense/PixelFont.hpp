@@ -3,7 +3,7 @@
 #include <array>
 #include <string>
 
-namespace dense {
+namespace pixtxt::dense {
 
 class PixelFont {
 public:

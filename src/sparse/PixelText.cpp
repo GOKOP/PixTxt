@@ -1,6 +1,6 @@
-#include "PixelText.hpp"
+#include <sparse/PixelText.hpp>
 
-namespace sparse {
+namespace pixtxt::sparse {
 
 PixelText::PixelText(const PixelFont& font, std::string_view text, sf::Vector2i pos) {
 	for(char character : text) {

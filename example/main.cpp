@@ -3,6 +3,8 @@
 
 #include "dense/PixelText.hpp"
 
+using namespace pixtxt;
+
 int main() {
 	sparse::PixelFont font("font.png");
 	dense::PixelFont dense_font("font.png");

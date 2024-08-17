@@ -1,9 +1,9 @@
 #pragma once
 
-#include "PixelFont.hpp"
+#include <sparse/PixelFont.hpp>
 #include <vector>
 
-namespace sparse {
+namespace pixtxt::sparse {
 
 class PixelText: public sf::Drawable {
 public:

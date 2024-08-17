@@ -1,6 +1,6 @@
-#include "PixelFont.hpp"
+#include <sparse/PixelFont.hpp>
 
-namespace sparse {
+namespace pixtxt::sparse {
 
 PixelFont::PixelFont(const std::string& filepath) {
 	sf::Image font_image;

@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-namespace sparse {
+namespace pixtxt::sparse {
 
 class PixelFont {
 public:
