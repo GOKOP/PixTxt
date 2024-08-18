@@ -1,4 +1,4 @@
-#include <sparse/PixelText.hpp>
+#include <pixtxt/sparse/PixelText.hpp>
 
 namespace pixtxt::sparse {
 

@@ -2,7 +2,7 @@
 
 #include <string_view>
 #include <array>
-#include <dense/PixelFont.hpp>
+#include <pixtxt/dense/PixelFont.hpp>
 
 namespace pixtxt::dense {
 

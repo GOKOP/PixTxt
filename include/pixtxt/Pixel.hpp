@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Color.hpp>
-#include <Position.hpp>
+#include <pixtxt/Color.hpp>
+#include <pixtxt/Position.hpp>
 
 namespace pixtxt {
 

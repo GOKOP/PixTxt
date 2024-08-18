@@ -2,7 +2,7 @@
 
 #include <array>
 #include <string_view>
-#include <Color.hpp>
+#include <pixtxt/Color.hpp>
 
 namespace pixtxt::sparse {
 

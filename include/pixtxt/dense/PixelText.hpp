@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include <Pixel.hpp>
-#include <dense/PixelFont.hpp>
+#include <pixtxt/Pixel.hpp>
+#include <pixtxt/dense/PixelFont.hpp>
 
 namespace pixtxt::dense {
 

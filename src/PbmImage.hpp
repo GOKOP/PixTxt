@@ -3,7 +3,7 @@
 #include <vector>
 #include <string_view>
 #include <optional>
-#include <Color.hpp>
+#include <pixtxt/Color.hpp>
 
 namespace pixtxt {
 

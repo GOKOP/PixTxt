@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Pixel.hpp>
-#include <sparse/PixelFont.hpp>
+#include <pixtxt/Pixel.hpp>
+#include <pixtxt/sparse/PixelFont.hpp>
 #include <vector>
 
 namespace pixtxt::sparse {

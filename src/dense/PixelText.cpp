@@ -1,5 +1,5 @@
-#include <dense/PixelText.hpp>
-#include <dense/SubpixelColumns.hpp>
+#include <pixtxt/dense/PixelText.hpp>
+#include "SubpixelColumns.hpp"
 #include <algorithm>
 
 namespace pixtxt::dense {

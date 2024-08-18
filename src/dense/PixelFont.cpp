@@ -1,5 +1,5 @@
-#include <dense/PixelFont.hpp>
-#include <PbmImage.hpp>
+#include <pixtxt/dense/PixelFont.hpp>
+#include "../PbmImage.hpp"
 
 namespace pixtxt::dense {
 

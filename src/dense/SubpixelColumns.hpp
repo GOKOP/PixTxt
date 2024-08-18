@@ -1,6 +1,6 @@
 #pragma once
 
-#include <dense/SubpixelColumnIterator.hpp>
+#include "SubpixelColumnIterator.hpp"
 
 namespace pixtxt::dense {
 

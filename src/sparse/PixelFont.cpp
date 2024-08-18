@@ -1,5 +1,5 @@
-#include <sparse/PixelFont.hpp>
-#include <PbmImage.hpp>
+#include <pixtxt/sparse/PixelFont.hpp>
+#include "../PbmImage.hpp"
 
 namespace pixtxt::sparse {
 

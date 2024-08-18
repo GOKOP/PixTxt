@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <sparse/PixelText.hpp>
-#include <dense/PixelText.hpp>
+#include <pixtxt/sparse/PixelText.hpp>
+#include <pixtxt/dense/PixelText.hpp>
 
 class SfmlPixelText : public sf::Drawable {
 	std::vector<sf::Vertex> pixels;
