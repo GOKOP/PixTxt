@@ -97,7 +97,7 @@ int main() {
 		"Integer id augue vitae ligula faucibus faucibus at nec neque. Nulla facilisi.",
 		{300, 224});
 
-	sf::RenderWindow window(sf::VideoMode(800, 600), "one pixel text", sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode(500, 300), "one pixel text", sf::Style::Close);
 	window.setFramerateLimit(60);
 	while(window.isOpen()) {
 		window.clear(sf::Color::White);
