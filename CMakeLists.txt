@@ -9,7 +9,7 @@ file(GLOB_RECURSE LIB_SOURCES "src/*.cpp")
 
 add_library(pixtxt ${LIB_SOURCES})
 target_include_directories(pixtxt PUBLIC "include")
-set_target_properties(pixtxt PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED 23)
+set_target_properties(pixtxt PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED 17)
 set_target_properties(pixtxt PROPERTIES VERSION ${PROJECT_VERSION})
 
 if(NOT MSVC)
@@ -17,7 +17,7 @@ if(NOT MSVC)
 endif()
 
 add_executable(sfml_example "examples/sfml_example.cpp")
-set_target_properties(sfml_example PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED 23)
+set_target_properties(sfml_example PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED 17)
 target_link_libraries(sfml_example pixtxt sfml-graphics)
 
 add_custom_command(

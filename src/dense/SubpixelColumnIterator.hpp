@@ -22,6 +22,7 @@ public:
 	static SubpixelColumnIterator past_the_end(const PixelFont* font, std::string_view text);
 
 	friend bool operator==(const SubpixelColumnIterator& lhs, const SubpixelColumnIterator& rhs);
+	friend bool operator!=(const SubpixelColumnIterator& lhs, const SubpixelColumnIterator& rhs);
 
 	// iterator stuff
 	
@@ -33,7 +34,5 @@ public:
 	inline void operator++(int) { ++*this; }
 
 };
-
-static_assert(std::input_iterator<SubpixelColumnIterator>);
 
 }

@@ -28,7 +28,7 @@ PixelFont::PixelFont(std::string_view filename) {
 		for(int j=0; j < char_width; ++j) {
 			for(int k=0; k < char_height; ++k) {
 				characters[i][k * char_width + j] =
-					font_image.get_pixel(j + x, k + y) == Color(255, 255, 255);
+					font_image.get_pixel(j + x, k + y) == Color{255, 255, 255};
 			}
 		}
 	}

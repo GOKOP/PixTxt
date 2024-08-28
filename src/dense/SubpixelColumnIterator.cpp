@@ -48,4 +48,11 @@ bool operator==(const SubpixelColumnIterator& lhs, const SubpixelColumnIterator&
 		&& lhs.current_column_in_char == rhs.current_column_in_char;
 }
 
+bool operator!=(const SubpixelColumnIterator& lhs, const SubpixelColumnIterator& rhs) {
+	return lhs.current_char != rhs.current_char
+		|| lhs.current_column_in_char != rhs.current_column_in_char
+		|| lhs.text != rhs.text
+		|| lhs.font != rhs.font;
+}
+
 }

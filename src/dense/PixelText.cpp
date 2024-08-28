@@ -18,13 +18,22 @@ PixelText::PixelText(const PixelFont& font, std::string_view text, Position pos)
 		++current_subpixel;
 		if(current_subpixel <= 2) continue;
 
-		std::ranges::copy(current_pixel_column, std::back_inserter(text_pixels));
+		std::copy(
+			current_pixel_column.begin(),
+			current_pixel_column.end(),
+			std::back_inserter(text_pixels));
+
 		current_subpixel = 0;
 		++current_x;
 		current_pixel_column = gen_pixel_column({current_x, pos.y});
 	}
 
-	if(current_subpixel <= 2) std::ranges::copy(current_pixel_column, std::back_inserter(text_pixels));
+	if(current_subpixel <= 2) {
+		std::copy(
+			current_pixel_column.begin(),
+			current_pixel_column.end(),
+			std::back_inserter(text_pixels));
+	}
 }
 
 uint8_t& PixelText::get_subpixel(Color& pixel, int index) const {
@@ -38,11 +47,11 @@ uint8_t& PixelText::get_subpixel(Color& pixel, int index) const {
 
 std::array<Pixel, PixelFont::char_height> PixelText::gen_pixel_column(Position pos) const {
 	return {
-		Pixel { pos, Color(0,0,0) },
-		Pixel { {pos.x, pos.y + 1}, Color(0,0,0) },
-		Pixel { {pos.x, pos.y + 2}, Color(0,0,0) },
-		Pixel { {pos.x, pos.y + 3}, Color(0,0,0) },
-		Pixel { {pos.x, pos.y + 4}, Color(0,0,0) }
+		Pixel { pos, Color{0,0,0} },
+		Pixel { {pos.x, pos.y + 1}, Color{0,0,0} },
+		Pixel { {pos.x, pos.y + 2}, Color{0,0,0} },
+		Pixel { {pos.x, pos.y + 3}, Color{0,0,0} },
+		Pixel { {pos.x, pos.y + 4}, Color{0,0,0} }
 	};
 }
 

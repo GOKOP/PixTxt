@@ -88,8 +88,8 @@ Color PbmImage::get_pixel(int x, int y) const {
 	uint8_t masked_byte = data[byte_pos] & byte_mask;
 
 	// the format specifies bit 1 as black and bit 0 as white
-	if(masked_byte) return Color(0, 0, 0);
-	return Color(255, 255, 255);
+	if(masked_byte) return Color{0, 0, 0};
+	return Color{255, 255, 255};
 }
 
 }
