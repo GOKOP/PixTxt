@@ -1,4 +1,5 @@
 #include <pixtxt/dense/PixelFont.hpp>
+#include <pixtxt/PixelFontError.hpp>
 #include "../PbmImage.hpp"
 
 namespace pixtxt::dense {
@@ -7,6 +8,18 @@ PixelFont::PixelFont(std::string_view filename) {
 	PbmImage font_image(filename);
 
 	static constexpr int chars_in_row = 16;
+
+	int expected_width = chars_in_row * char_width;
+	int expected_height = (characters.size() / chars_in_row) * char_height;
+
+	if(font_image.get_width() != expected_width || font_image.get_height() != expected_height) {
+		throw PixelFontError(
+			filename,
+			": Wrong dimensions; expected ",
+			std::to_string(expected_width),
+			"x",
+			std::to_string(expected_height));
+	}
 
 	for(size_t i=0; i < characters.size(); ++i) {
 		int x = (i % chars_in_row) * char_width;

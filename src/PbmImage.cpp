@@ -2,40 +2,43 @@
 #include <fstream>
 #include <cctype>
 #include <charconv>
+#include <pixtxt/PbmFileError.hpp>
 
 namespace pixtxt {
 
-PbmImage::PbmImage(const std::string_view filename) {
+PbmImage::PbmImage(const std::string_view filename): filename(filename) {
 	std::ifstream file(filename.data(), std::ios::binary);
-	// todo: check if good
+	if(!file.good()) throw PbmFileError(filename, ": Can't open file.");
 	
 	data = std::vector<uint8_t>(
 		(std::istreambuf_iterator<char>(file)),
 		std::istreambuf_iterator<char>());
 
-	if(data[0] != 'P' || data[1] != '4' || isspace(data[2])) {
-		// bad format
+	if(data[0] != 'P' || data[1] != '4' || !isspace(data[2])) {
+		throw PbmFileError(filename, ": Invalid format: not a binary PBM file.");
 	}
 
 	int pos = skip_comment(3);
 
 	auto [pos1, maybe_width] = read_num(pos);
+	if(!maybe_width.has_value()) throw PbmFileError(filename, ": Invalid format: no width.");
 	width = maybe_width.value();
 
-	pos = skip_comment(++pos1);
+	pos = skip_comment(increment_pos(pos1));
 
 	auto [pos2, maybe_height] = read_num(pos);
+	if(!maybe_height.has_value()) throw PbmFileError(filename, ": Invalid format: no height.");
 	height = maybe_height.value();
 
-	image_start_pos = skip_comment(++pos2);
+	image_start_pos = skip_comment(increment_pos(pos2));
 }
 
 int PbmImage::skip_comment(int pos) const {
 	if(data[pos] != '#') return pos;
 	while(data[pos] != '\n' && data[pos] != '\r') {
-		++pos;
+		pos = increment_pos(pos);
 	}
-	return ++pos;
+	return increment_pos(pos);
 }
 
 std::pair<int, std::optional<int>> PbmImage::read_num(int pos) const {
@@ -43,7 +46,7 @@ std::pair<int, std::optional<int>> PbmImage::read_num(int pos) const {
 
 	while(!isspace(data[pos])) {
 		str.push_back(data[pos]);
-		++pos;
+		pos = increment_pos(pos);
 	}
 
 	int dest;
@@ -53,9 +56,31 @@ std::pair<int, std::optional<int>> PbmImage::read_num(int pos) const {
 	return {pos, dest};
 }
 
+int PbmImage::increment_pos(int pos) const {
+	++pos;
+	// cast to shut up compiler warning about sign mismatch, it should be fine
+	if(pos >= static_cast<int>(data.size())) {
+		throw_file_too_short(pos);
+	}
+	return pos;
+}
+
+void PbmImage::throw_file_too_short(int pos) const {
+	throw PbmFileError(
+		filename,
+		": Invalid format: file ends too soon. Expected ",
+		std::to_string(pos),
+		"th byte.");
+}
+
 Color PbmImage::get_pixel(int x, int y) const {
 	int linear_pos = y * width + x;
+
 	int byte_pos = image_start_pos + linear_pos / 8;
+	if(byte_pos >= static_cast<int>(data.size())) {
+		throw_file_too_short(byte_pos);
+	}
+
 	int pos_in_byte = linear_pos % 8;
 
 	// the position must be reversed thus subtracting from 7

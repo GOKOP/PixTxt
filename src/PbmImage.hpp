@@ -17,12 +17,20 @@ class PbmImage {
 	int height;
 	int image_start_pos;
 
+	std::string_view filename; // kept for exception messages
+
 	int skip_comment(int pos) const;
 	std::pair<int, std::optional<int>> read_num(int pos) const;
+	int increment_pos(int pos) const;
+
+	void throw_file_too_short(int error_pos) const;
 
 public:
 
 	explicit PbmImage(const std::string_view filename);
+
+	inline int get_width() const { return width; }
+	inline int get_height() const { return height; }
 	Color get_pixel(int x, int y) const;
 };
 
