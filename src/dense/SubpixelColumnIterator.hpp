@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string_view>
-#include <array>
+#include <vector>
 #include <pixtxt/dense/PixelFont.hpp>
 
 namespace pixtxt::dense {
@@ -27,7 +27,7 @@ public:
 	// iterator stuff
 	
 	using difference_type = std::ptrdiff_t;
-	using value_type = std::array<bool, PixelFont::char_height>;
+	using value_type = std::vector<bool>;
 
 	value_type operator*() const;
 	SubpixelColumnIterator& operator++();

@@ -7,7 +7,7 @@ namespace pixtxt::dense {
 PixelText::PixelText(const PixelFont& font, std::string_view text, Position pos) {
 	int current_subpixel = 0;
 	int current_x = pos.x;
-	std::array<Pixel, PixelFont::char_height> current_pixel_column = gen_pixel_column(pos);
+	std::vector<Pixel> current_pixel_column = gen_pixel_column(pos, font.get_char_height());
 
 	for(auto column : SubpixelColumns(&font, text)) {
 		for(size_t i=0; i < column.size(); ++i) {
@@ -25,7 +25,7 @@ PixelText::PixelText(const PixelFont& font, std::string_view text, Position pos)
 
 		current_subpixel = 0;
 		++current_x;
-		current_pixel_column = gen_pixel_column({current_x, pos.y});
+		current_pixel_column = gen_pixel_column({current_x, pos.y}, font.get_char_height());
 	}
 
 	if(current_subpixel <= 2) {
@@ -45,14 +45,13 @@ uint8_t& PixelText::get_subpixel(Color& pixel, int index) const {
 	}
 }
 
-std::array<Pixel, PixelFont::char_height> PixelText::gen_pixel_column(Position pos) const {
-	return {
-		Pixel { pos, Color{0,0,0} },
-		Pixel { {pos.x, pos.y + 1}, Color{0,0,0} },
-		Pixel { {pos.x, pos.y + 2}, Color{0,0,0} },
-		Pixel { {pos.x, pos.y + 3}, Color{0,0,0} },
-		Pixel { {pos.x, pos.y + 4}, Color{0,0,0} }
-	};
+std::vector<Pixel> PixelText::gen_pixel_column(Position pos, int height) const {
+	std::vector<Pixel> res;
+	for(int i=0; i < height; ++i) {
+		res.push_back(Pixel { {pos.x, pos.y + i}, Color { 0, 0, 0 } });
+	}
+
+	return res;
 }
 
 }

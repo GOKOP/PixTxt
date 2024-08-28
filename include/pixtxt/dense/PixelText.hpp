@@ -10,7 +10,7 @@ class PixelText {
 	std::vector<Pixel> text_pixels;
 
 	uint8_t& get_subpixel(Color& pixel, int index) const;
-	std::array<Pixel, PixelFont::char_height> gen_pixel_column(Position pos) const;
+	std::vector<Pixel> gen_pixel_column(Position pos, int height) const;
 
 public:
 

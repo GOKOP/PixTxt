@@ -4,7 +4,10 @@
 
 namespace pixtxt::dense {
 
-PixelFont::PixelFont(std::string_view filename) {
+PixelFont::PixelFont(int char_width, int char_height, std::string_view filename):
+	char_width(char_width),
+	char_height(char_height)
+{
 	PbmImage font_image(filename);
 
 	static constexpr int chars_in_row = 16;
@@ -22,6 +25,8 @@ PixelFont::PixelFont(std::string_view filename) {
 	}
 
 	for(size_t i=0; i < characters.size(); ++i) {
+		characters[i].resize(char_width * char_height);
+
 		int x = (i % chars_in_row) * char_width;
 		int y = (i / chars_in_row) * char_height;
 

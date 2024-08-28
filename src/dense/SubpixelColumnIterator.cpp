@@ -10,8 +10,9 @@ SubpixelColumnIterator::value_type SubpixelColumnIterator::operator*() const {
 	auto character = font->get_char(text[current_char]);
 
 	value_type result;
+	result.resize(font->get_char_height());
 	for(size_t i=0; i < result.size(); ++i) {
-		result[i] = character[i * PixelFont::char_width + current_column_in_char];
+		result[i] = character[i * font->get_char_width() + current_column_in_char];
 	}
 
 	return result;
@@ -29,7 +30,7 @@ SubpixelColumnIterator SubpixelColumnIterator::past_the_end(
 
 SubpixelColumnIterator& SubpixelColumnIterator::operator++() {
 	++current_column_in_char;
-	if(current_column_in_char < PixelFont::char_width) return *this;
+	if(current_column_in_char < font->get_char_width()) return *this;
 
 	current_column_in_char = -1; // gap between characters
 	++current_char;

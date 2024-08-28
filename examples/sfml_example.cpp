@@ -49,8 +49,8 @@ public:
 };
 
 int main() {
-	pixtxt::sparse::PixelFont sparse_font("font.pbm");
-	pixtxt::dense::PixelFont dense_font("font.pbm");
+	pixtxt::sparse::PixelFont sparse_font(5, "font.pbm");
+	pixtxt::dense::PixelFont dense_font(3, 5, "font.pbm");
 
 	auto sparse_example = SfmlPixelText::sparse(sparse_font, "Sparse text example", {100, 100});
 	auto dense_example = SfmlPixelText::dense(dense_font, "Dense text example", {100, 106});

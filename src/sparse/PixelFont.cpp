@@ -4,7 +4,7 @@
 
 namespace pixtxt::sparse {
 
-PixelFont::PixelFont(std::string_view filepath) {
+PixelFont::PixelFont(int char_height, std::string_view filepath): char_height(char_height) {
 	PbmImage font_image(filepath);
 
 	static constexpr int chars_in_row = 16;
@@ -22,6 +22,8 @@ PixelFont::PixelFont(std::string_view filepath) {
 	}
 
 	for(size_t i=0; i < characters.size(); ++i) {
+		characters[i].resize(char_height);
+
 		int x = (i % chars_in_row) * subpixels;
 		int y = (i / chars_in_row) * char_height;
 
