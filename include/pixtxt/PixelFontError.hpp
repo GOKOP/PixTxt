@@ -5,6 +5,7 @@
 
 namespace pixtxt {
 
+/// Exception thrown for issues while generating sparse or dense PixelFont from an image.
 class PixelFontError: public std::runtime_error {
 public:
 	template<typename... Strings>

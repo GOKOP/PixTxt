@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.27)
 project(PixTxt VERSION 0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -17,6 +17,11 @@ set_target_properties(pixtxt PROPERTIES VERSION ${PROJECT_VERSION})
 
 if(NOT MSVC)
 	target_compile_options(pixtxt PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+find_package(Doxygen)
+if(${DOXYGEN_FOUND})
+	doxygen_add_docs(docs ALL CONFIG_FILE ${CMAKE_SOURCE_DIR}/Doxyfile)
 endif()
 
 if(${PIXTXT_SFML_EXAMPLE})

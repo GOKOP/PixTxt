@@ -64,8 +64,10 @@ More practical examples that show how to use this library with other libraries c
 ## Building
 
 To build the SFML and libspng examples you need SFML and libspng.
-Currently there's no install step, idk how that works. I'll add it later.
+Currently there's no install step, idk how that works. I'll add it later, maybe.
 Public headers are in the `include` directory.
+If you have Doxygen installed and CMake can find it, documentation will be built.
+Otherwise it won't. If it was then it's under `build/docs`.
 
 ```bash
 mkdir build && cd build

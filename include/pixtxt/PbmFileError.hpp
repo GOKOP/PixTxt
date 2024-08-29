@@ -5,6 +5,7 @@
 
 namespace pixtxt {
 
+/// Exception thrown while parsing invalid PBM files.
 class PbmFileError : public std::runtime_error {
 public:
 	template<typename... Strings>

@@ -14,7 +14,17 @@ class PixelText {
 
 public:
 
+	/// @param font: Font to use.
+	/// @param text: The text to generate.
+	/// @param pos: Position, in pixels, where the text should be located.
+	///     Resulting pixels will be positioned according to this.
 	PixelText(const PixelFont& font, std::string_view text, Position pos);
+
+	/// Retrieve the generated pixel data.
+	/// The first pixel is guaranteed to be on the top left of the text,
+	/// and the last pixel is guaranteed to be on the bottom right.
+	///
+	/// @return Const reference to the vector where pixel data is stored.
 	inline const std::vector<Pixel>& get_pixels() const { return text_pixels; };
 };
 

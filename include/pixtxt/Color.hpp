@@ -3,6 +3,7 @@
 
 namespace pixtxt {
 
+/// Convenience struct to represent a color, i.e. red, green and blue 8-bit values.
 struct Color {
 	uint8_t r;
 	uint8_t g;
