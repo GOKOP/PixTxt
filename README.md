@@ -1,6 +1,6 @@
 # PixTxt
 
-![Zoomed in photo of a computer screen with individual pixels visible; RGB subpixels create the text "sparse text example" and "dense text example" where in the second one they're closer together](relative%20readme.png)
+![Zoomed in photo of a computer screen with individual pixels visible; RGB subpixels create the text "sparse text example" and "dense text example" where in the second one they're closer together](https://raw.githubusercontent.com/GOKOP/PixTxt/master/readme.png)
 
 PixTxt is a C++17 library for generating text with letters as thin as a single pixel.
 It relies on the screen having the RGB subpixel layout, which means that OLED users are out of luck.
@@ -88,3 +88,9 @@ cmake --build .
 
 - ASCII only
 - Not at all suitable for embedded (ironically the only place where it could pretend to be useful)
+
+## Documentation
+
+Generated with Doxygen
+
+https://gokop.github.io/PixTxt/
