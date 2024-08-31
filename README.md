@@ -75,11 +75,11 @@ mkdir build && cd build
 # default setup: shared library, no examples
 cmake ..
 # build as a static lib
-cmake .. -DPIXTXT_STATIC_LIB
+cmake .. -DPIXTXT_STATIC_LIB=YES
 # build the SFML example
-cmake .. -DPIXTXT_SFML_EXAMPLE
+cmake .. -DPIXTXT_SFML_EXAMPLE=YES
 # build the libspng example
-cmake .. -DPIXTXT_SPNG_EXAMPLE
+cmake .. -DPIXTXT_SPNG_EXAMPLE=YES
 
 cmake --build .
 ```
